@@ -16,7 +16,7 @@ import javax.swing.*;
 public class libraryMain extends JPanel {
 	
 	private Image iconOnTitleBar;
-	private Image backgroundPhoto;
+	//private Image backgroundPhoto;
 	
 	public void libraryMain() {
 		Dimension windowSize = new Dimension(900, 600);
@@ -28,6 +28,16 @@ public class libraryMain extends JPanel {
 		// TODO Auto-generated method stub
 		login login = new login();
 		login.gui();
+	}
+	
+	public void setIconOnTitleBar(Image image) {
+		// TODO Auto-generated method stub
+		iconOnTitleBar = image;
+	}
+	
+	public Image getIconOnTitleBar() {
+		// TODO Auto-generated method stub
+		return iconOnTitleBar;
 	}
 
 }

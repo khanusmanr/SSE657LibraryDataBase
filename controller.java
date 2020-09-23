@@ -1,5 +1,10 @@
+import java.sql.*;
 
 public class controller {
+	
+	public controller() {
+		//establish connection to database
+	}
 	
 	public void viewBooks() {
 		//both user and admin

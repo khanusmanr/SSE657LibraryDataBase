@@ -25,11 +25,16 @@ public class user extends JFrame {
 	        }	
 	    });
 		
+		libraryMain lm = new libraryMain();
+	    
+	    lm.setIconOnTitleBar(new ImageIcon("images/libraryIcon.png").getImage());
+		userMenu.setIconImage(lm.getIconOnTitleBar()); 
+		
 		userMenu.add(my_books);
 		userMenu.add(view_books);
 		
-		userMenu.setSize(360,100);//400 width and 500 height  
-	    userMenu.setLayout(null);//using no layout managers  
+		userMenu.setSize(360,100);//360 width and 100 height  
+	    userMenu.setLayout(null);  
 	    userMenu.setVisible(true);//making the frame visible 
 	    userMenu.setLocationRelativeTo(null);
 	}

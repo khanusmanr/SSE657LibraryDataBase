@@ -80,6 +80,11 @@ public class admin {
 	        }	
 	    });
 	    
+	    libraryMain lm = new libraryMain();
+	    
+	    lm.setIconOnTitleBar(new ImageIcon("images/libraryIcon.png").getImage());
+		adminMenu.setIconImage(lm.getIconOnTitleBar()); 
+	    
 	    adminMenu.add(view_books);
 	    adminMenu.add(create_data);
 	    adminMenu.add(add_book);
@@ -89,8 +94,8 @@ public class admin {
 	    adminMenu.add(view_user);
 	    adminMenu.add(return_book);
 	    
-	    adminMenu.setSize(850,180);//400 width and 500 height  
-	    adminMenu.setLayout(null);//using no layout managers  
+	    adminMenu.setSize(850,180);//850 width and 180 height  
+	    adminMenu.setLayout(null);
 	    adminMenu.setVisible(true);//making the frame visible 
 	    adminMenu.setLocationRelativeTo(null);
 	}

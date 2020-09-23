@@ -40,21 +40,26 @@ public class login {
 	        }
 	        else 
 	        {
-	        	if(password.equals("password") && username.equals("admin"))
+	        	if(password.equals("password") && username.equals("admin"))//hardcoded for now
 	        	{
 	        		admin admin = new admin();
 	        		admin.menu();
 	        	}
 	        	
-	        	else if(username.equals("user") && password.equals("password")) {
+	        	else if(username.equals("user") && password.equals("password")) //hardcoded for now
+	        	{
 	        		user user = new user();
 	        		user.menu();
 	        	}
 	        }
 	    }               
 	    });
-	 
-	     
+	    
+	    libraryMain lm = new libraryMain();
+	    
+	    lm.setIconOnTitleBar(new ImageIcon("images/libraryIcon.png").getImage());
+		window.setIconImage(lm.getIconOnTitleBar()); 
+		
 	    window.add(F_pass); //add password
 	    window.add(login_but);//adding button in JFrame  
 	    window.add(F_user);  //add user
@@ -62,7 +67,7 @@ public class login {
 	    window.add(l2); // add label2 i.e. for password
 	     
 	    window.setSize(400,180);//400 width and 500 height  
-	    window.setLayout(null);//using no layout managers  
+	    window.setLayout(null); 
 	    window.setVisible(true);//making the frame visible 
 	    window.setLocationRelativeTo(null);
 	}
