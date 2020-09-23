@@ -4,7 +4,7 @@ import javax.swing.*;
 
 public class user extends JFrame {
 	
-	public static void main(String[] args){
+	public void menu() {
 		JFrame userMenu = new JFrame("User Menu");
 		
 		JButton my_books = new JButton("My Books");

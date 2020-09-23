@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 public class admin {
-	public static void main(String[] args) {
+	public void menu() {
 		JFrame adminMenu = new JFrame("Admin Menu");
 		
 		JButton view_books = new JButton("View Books");

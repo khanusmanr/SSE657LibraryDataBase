@@ -38,40 +38,18 @@ public class login {
 	        {
 	            JOptionPane.showMessageDialog(null,"Please enter password"); 
 	        }
-	        else { //If both the fields are present then to login the user, check whether the user exists already
-	            //System.out.println("Login connect");
-	            //Connection connection=connect();  //Connect to the database
-	            /*try
-	            {
-	            Statement stmt = connection.createStatement();
-	              stmt.executeUpdate("USE LIBRARY"); //Use the database with the name "Library"
-	              String st = ("SELECT * FROM USERS WHERE USERNAME='"+username+"' AND PASSWORD='"+password+"'"); //Retreive username and passwords from users
-	              ResultSet rs = stmt.executeQuery(st); //Execute query
-	              if(rs.next()==false) { //Move pointer below
-	                  System.out.print("No user");  
-	                  JOptionPane.showMessageDialog(null,"Wrong Username/Password!"); //Display Message
-	 
-	              }
-	              else {
-	                  window.dispose();
-	                rs.beforeFirst();  //Move the pointer above
-	                while(rs.next())
-	                {
-	                  String admin = rs.getString("ADMIN"); //user is admin
-	                  //System.out.println(admin);
-	                  String UID = rs.getString("UID"); //Get user ID of the user
-	                  if(admin.equals("1")) { //If boolean value 1
-	                      //admin_menu(); //redirect to admin menu
-	                  }
-	                  else{
-	                      //user_menu(UID); //redirect to user menu for that user ID
-	                  }
-	              }
-	              }
-	            }
-	            catch (Exception ex) {
-	                 ex.printStackTrace();
-	        }*/
+	        else 
+	        {
+	        	if(password.equals("password") && username.equals("admin"))
+	        	{
+	        		admin admin = new admin();
+	        		admin.menu();
+	        	}
+	        	
+	        	else if(username.equals("user") && password.equals("password")) {
+	        		user user = new user();
+	        		user.menu();
+	        	}
 	        }
 	    }               
 	    });
