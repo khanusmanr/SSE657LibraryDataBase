@@ -4,7 +4,7 @@ import javax.swing.*;
 
 public class user extends JFrame {
 	
-	public void menu() {
+	public void menu(String UID) {
 		JFrame userMenu = new JFrame("User Menu");
 		
 		JButton my_books = new JButton("My Books");
@@ -38,4 +38,5 @@ public class user extends JFrame {
 	    userMenu.setVisible(true);//making the frame visible 
 	    userMenu.setLocationRelativeTo(null);
 	}
+	
 }

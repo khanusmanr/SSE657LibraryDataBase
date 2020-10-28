@@ -1,16 +1,7 @@
-import java.awt.Dimension;
-import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.*;
 import java.sql.*;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Locale;
-import java.util.concurrent.TimeUnit;
- 
+import java.text.*;
+import java.util.*;
 import javax.swing.*;
 //import net.proteanit.sql.DbUtils;
 public class libraryMain extends JPanel {
@@ -18,7 +9,7 @@ public class libraryMain extends JPanel {
 	private Image iconOnTitleBar;
 	//private Image backgroundPhoto;
 	
-	public void libraryMain() {
+	public  libraryMain() {
 		Dimension windowSize = new Dimension(900, 600);
 		this.setPreferredSize(windowSize);
 		this.setMaximumSize(windowSize);
