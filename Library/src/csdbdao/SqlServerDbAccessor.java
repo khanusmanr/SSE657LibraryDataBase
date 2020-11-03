@@ -76,32 +76,39 @@ public class SqlServerDbAccessor {
 		return connectionUrl;
 	}
 	
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+	public static ResultSet loadEntriesFromDb(String file)
+	{
 		ArrayList<String> subjects = new ArrayList<String>();
 		SqlServerDbAccessor sqda = new SqlServerDbAccessor();
-		String file = "Books_Instance";
-		sqda.setDbName("SSE657-Library");
-		sqda.connectToDb();
 		String SQL = "SELECT * FROM " + file;
+		String[] row = new String[4];
 		try {
 			Statement stmt = sqda.getConnection().createStatement();
 			ResultSet rs = stmt.executeQuery(SQL);
-			String[] row = new String[4];
-			while(rs.next()) {
+			
+			/*while(rs.next()) {
 				for (int i=1; i<=4; i++) {
 					row[i-1] = ((rs.getString(i) == null) ? "" : rs.getString(i));
 					subjects.add(row[i-1]);
 				}
 				
-			}
+			}*/
 			
-			
+			return rs;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return null;
 		
-		System.out.println(subjects);
+		
 	}
 	
+	/*public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		SqlServerDbAccessor sqda = new SqlServerDbAccessor();
+		sqda.setDbName("SSE657-Library");
+		sqda.connectToDb();
+		//sqda.loadEntriesFromDb("Books_Instance");
+}*/
 }
