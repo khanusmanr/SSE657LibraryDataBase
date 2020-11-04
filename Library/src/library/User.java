@@ -5,7 +5,7 @@ import javax.swing.*;
 
 public class User extends JFrame {
 	
-	public void menu() {
+	public void menu(String username) {
 		JFrame userMenu = new JFrame("User Menu");
 		
 		JButton my_books = new JButton("My Books");
@@ -13,7 +13,7 @@ public class User extends JFrame {
 		my_books.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent e){
 	        	Controller library = new Controller();
-	        	library.viewIssued();
+	        	library.myBooks(username);
 	        }	
 	    });
 		

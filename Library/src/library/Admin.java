@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 public class Admin {
-	public void menu() {
+	public void menu(String username) {
 		JFrame adminMenu = new JFrame("Admin Menu");
 		
 		JButton view_books = new JButton("View Books");
@@ -72,12 +72,12 @@ public class Admin {
 	        }	
 	    });
 		
-		JButton create_data=new JButton("Create/Reset Data");
+		JButton create_data=new JButton("My Books");
 	    create_data.setBounds(650,60,150,25);
 	    create_data.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent e){
 	        	Controller library = new Controller();
-	        	library.createData();
+	        	library.myBooks(username);
 	        }	
 	    });
 	    

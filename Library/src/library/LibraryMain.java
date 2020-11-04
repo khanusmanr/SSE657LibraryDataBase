@@ -18,6 +18,9 @@ public class LibraryMain extends JPanel {
 		// TODO Auto-generated method stub
 		Login login = new Login();
 		login.gui();
+		//myBooks();
+		//addBook();
+		//addUser();
 	}
 	
 	public void setIconOnTitleBar(Image image) {
@@ -29,5 +32,19 @@ public class LibraryMain extends JPanel {
 		// TODO Auto-generated method stub
 		return iconOnTitleBar;
 	}
-
+	
+	public static void myBooks() {
+		Controller c = new Controller();
+		c.myBooks("meatball");
+	}
+	
+	public static void addBook() {
+		Controller c = new Controller();
+		c.addBook();
+	}
+	
+	public static void addUser() {
+		Controller c = new Controller();
+		c.addUser();
+	}
 }

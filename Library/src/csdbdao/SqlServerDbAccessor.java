@@ -109,6 +109,6 @@ public class SqlServerDbAccessor {
 		SqlServerDbAccessor sqda = new SqlServerDbAccessor();
 		sqda.setDbName("SSE657-Library");
 		sqda.connectToDb();
-		//sqda.loadEntriesFromDb("Books_Instance");
+		sqda.loadEntriesFromDb("Books_Instance");
 }*/
 }

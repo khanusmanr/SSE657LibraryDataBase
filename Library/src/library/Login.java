@@ -2,6 +2,7 @@ package library;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
 import java.sql.*;
 
 public class Login {
@@ -44,13 +45,15 @@ public class Login {
 	        	if(password.equals("password") && username.equals("admin"))//hardcoded for now
 	        	{
 	        		Admin admin = new Admin();
-	        		admin.menu();
+	        		admin.menu(username);
+	        		window.dispatchEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSING));
 	        	}
 	        	
 	        	else if(username.equals("user") && password.equals("password")) //hardcoded for now
 	        	{
 	        		User user = new User();
-	        		user.menu();
+	        		user.menu(username);
+	        		window.dispatchEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSING));
 	        	}
 	        	
 	        	else
