@@ -91,17 +91,41 @@ public class Controller {
 	
 	public void viewIssued() {
 		//admin only
+		JFrame f = new JFrame("Books Available");
+		SqlServerDbAccessor sqda = new SqlServerDbAccessor();
+		sqda.setDbName("SSE657-Library");
+		sqda.connectToDb();
+		String sql = "SELECT * FROM Book_Lookup WHERE NOT owner = 'NULL'";
+		try {
+			
+			Statement stmt = sqda.getConnection().createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+            
+            JTable book_list= new JTable(); 
+            book_list.setModel(DbUtils.resultSetToTableModel(rs)); 
+            
+            JScrollPane scrollPane = new JScrollPane(book_list); 
+            
+            LibraryMain lm = new LibraryMain();
+    	    
+    	    lm.setIconOnTitleBar(new ImageIcon("images/libraryIcon.png").getImage());
+    	    //Library Icons - Free Download, PNG and SVG. (n.d.). Retrieved September 23, 2020, from https://icons8.com/icons/set/library
+    		f.setIconImage(lm.getIconOnTitleBar()); 
+            f.add(scrollPane); 
+            f.setSize(800, 400); 
+            f.setVisible(true);
+            f.setLocationRelativeTo(null);
+		}
+		catch (SQLException e1) {
+            // TODO Auto-generated catch block
+             JOptionPane.showMessageDialog(null, e1);
+        } 
 	}
 	
 	public void addUser() {
 		//only admin
 		JFrame window=new JFrame("Add User");  
 	    JLabel l1,l2, l3, l4, l5;  
-	    /*l1=new JLabel("Member ID");  
-	    l1.setBounds(30,15, 100,30); //x axis, y axis, width, height    
-	     
-	    JTextField F_memberID = new JTextField(); 
-	    F_memberID.setBounds(120, 15, 200, 30);*/
 	    
 	    l2=new JLabel("Member Name");  
 	    l2.setBounds(30,15, 100,30); 
@@ -149,20 +173,7 @@ public class Controller {
     			//ResultSet rs = stmt.executeQuery(sql);
     			stmt.executeUpdate(sql);
     			window.dispatchEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSING));
-                /*JTable book_list= new JTable(); 
-                book_list.setModel(DbUtils.resultSetToTableModel(rs)); 
                 
-                JScrollPane scrollPane = new JScrollPane(book_list);*/ 
-                
-                /*LibraryMain lm = new LibraryMain();
-        	    
-        	    lm.setIconOnTitleBar(new ImageIcon("images/libraryIcon.png").getImage());
-        	    //Library Icons - Free Download, PNG and SVG. (n.d.). Retrieved September 23, 2020, from https://icons8.com/icons/set/library
-        		f.setIconImage(lm.getIconOnTitleBar()); 
-                f.add(scrollPane); 
-                f.setSize(800, 400); 
-                f.setVisible(true);
-                f.setLocationRelativeTo(null);*/
     		}
     		catch (SQLException e1) {
                 // TODO Auto-generated catch block
@@ -248,12 +259,6 @@ public class Controller {
 	    JTextField F_author=new JTextField(); 
 	    F_author.setBounds(110, 50, 200, 30);
 	    
-	    /*l3=new JLabel("Book ID");  
-	    l3.setBounds(30,85, 100,30); 
-	    
-	    JTextField F_bookID=new JTextField(); 
-	    F_bookID.setBounds(110, 85, 200, 30);*/
-	    
 	    l4=new JLabel("Genre");  
 	    l4.setBounds(30,85, 100,30); 
 	    
@@ -287,22 +292,7 @@ public class Controller {
 	    			
 	    			Statement stmt = sqda.getConnection().createStatement();
 	    			stmt.executeUpdate(sql);
-	    			/*ResultSet rs = stmt.executeQuery(sql);
-	                
-	                JTable book_list= new JTable(); 
-	                book_list.setModel(DbUtils.resultSetToTableModel(rs)); 
-	                
-	                JScrollPane scrollPane = new JScrollPane(book_list); */
-	                
-	                /*LibraryMain lm = new LibraryMain();
-	        	    
-	        	    lm.setIconOnTitleBar(new ImageIcon("images/libraryIcon.png").getImage());
-	        	    //Library Icons - Free Download, PNG and SVG. (n.d.). Retrieved September 23, 2020, from https://icons8.com/icons/set/library
-	        		f.setIconImage(lm.getIconOnTitleBar()); 
-	                f.add(scrollPane); 
-	                f.setSize(800, 400); 
-	                f.setVisible(true);
-	                f.setLocationRelativeTo(null);*/
+	    			
 	    			window.dispatchEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSING));
 	    		}
 	    		catch (SQLException e1) {

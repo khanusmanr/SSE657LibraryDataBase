@@ -21,6 +21,7 @@ public class LibraryMain extends JPanel {
 		//myBooks();
 		//addBook();
 		//addUser();
+		//viewIssued();
 	}
 	
 	public void setIconOnTitleBar(Image image) {
@@ -46,5 +47,10 @@ public class LibraryMain extends JPanel {
 	public static void addUser() {
 		Controller c = new Controller();
 		c.addUser();
+	}
+	
+	public static void viewIssued() {
+		Controller c = new Controller();
+		c.viewIssued();
 	}
 }
