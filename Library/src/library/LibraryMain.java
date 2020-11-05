@@ -1,8 +1,7 @@
 package library;
 import java.awt.Dimension;
 import java.awt.Image;
-import java.time.LocalDate;
-
+ 
 import javax.swing.*;
 public class LibraryMain extends JPanel {
 	
@@ -23,7 +22,7 @@ public class LibraryMain extends JPanel {
 		//addBook();
 		//addUser();
 		//viewIssued();
-		//dateCheck();
+		//deleteBook();
 	}
 	
 	public void setIconOnTitleBar(Image image) {
@@ -56,11 +55,8 @@ public class LibraryMain extends JPanel {
 		c.viewIssued();
 	}
 	
-	public static void dateCheck() {
-		LocalDate date = LocalDate.now();
-    	System.out.print(date);
-    	System.out.print(" ");
-    	LocalDate newDate = date.plusDays(7);
-    	System.out.println(newDate);
+	public static void deleteBook() {
+		Controller c = new Controller();
+		c.deleteBook();
 	}
 }

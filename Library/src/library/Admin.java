@@ -81,6 +81,23 @@ public class Admin {
 	        }	
 	    });
 	    
+	    JButton delete_book = new JButton("Delete Books");
+		delete_book.setBounds(50,100,150,25);
+		delete_book.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e){
+	        	Controller library = new Controller();
+	        	library.deleteBook();
+	        }	
+	    });
+		
+		JButton delete_users = new JButton("Delete Users");
+		delete_users.setBounds(250,100,150,25);
+		delete_users.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e){
+	        	Controller library = new Controller();
+	        	library.deleteUser();
+	        }	
+	    });
 	    LibraryMain lm = new LibraryMain();
 	    
 	    lm.setIconOnTitleBar(new ImageIcon("images/libraryIcon.png").getImage());
@@ -94,6 +111,8 @@ public class Admin {
 	    adminMenu.add(add_user);
 	    adminMenu.add(view_user);
 	    adminMenu.add(return_book);
+	    adminMenu.add(delete_book);
+	    adminMenu.add(delete_users);
 	    
 	    adminMenu.setSize(850,180);//850 width and 180 height  
 	    adminMenu.setLayout(null);
