@@ -281,6 +281,7 @@ public class Controller {
 	        	String genre = F_genre.getText();
 	        	//String bookID = F_bookID.getText();
 	        	String owner = F_owner.getText();
+	        	String status = "In-Stock";
 	        	
 	        	//JFrame f = new JFrame("Current Members");
 	    		SqlServerDbAccessor sqda = new SqlServerDbAccessor();
@@ -288,10 +289,13 @@ public class Controller {
 	    		sqda.connectToDb();
 	    		String sql = "INSERT INTO Book_Lookup (Title, Name, Genre, owner)"
 	    				+ "VALUES ('" + title+ "', '" +author+ "' , '" + genre + "' ,  '" + owner + "')" ;
+	    		String sql2 = "INSERT INTO Books_Instance (Title, Status, owner)"
+	    				+ "VALUES ('" + title+ "', '" +status+ "' , '" + owner + "')" ;
 	    		try {
 	    			
 	    			Statement stmt = sqda.getConnection().createStatement();
 	    			stmt.executeUpdate(sql);
+	    			stmt.executeUpdate(sql2);
 	    			
 	    			window.dispatchEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSING));
 	    		}
