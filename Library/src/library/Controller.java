@@ -3,13 +3,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.sql.*;
+import java.time.LocalDate;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -18,10 +18,6 @@ import net.proteanit.sql.DbUtils;
 import csdbdao.SqlServerDbAccessor;
 
 public class Controller {
-	
-	public Controller() {
-		//establish connection to database
-	}
 	
 	public void viewBooks() {
 		//both user and admin
@@ -241,6 +237,96 @@ public class Controller {
 	}
 	public void issueBook() {
 		//only admin
+		//only admin
+		//change the owner the book in book_lookup and book_instance
+		//take note of issue date and return date
+		JFrame window=new JFrame("Issue Book");  
+		JLabel l1,l2;  
+		l1=new JLabel("Title");  
+		l1.setBounds(30,15, 100,30); //x axis, y axis, width, height    
+			     
+		JTextField F_title = new JTextField(); 
+		F_title.setBounds(110, 15, 200, 30);
+			    
+		l2=new JLabel("Owner");  
+		l2.setBounds(30,50, 100,30); 
+			    
+		JTextField F_owner=new JTextField(); 
+		F_owner.setBounds(110, 50, 200, 30);
+				
+		JButton add_but=new JButton("Issue Book");
+		add_but.setBounds(110,155,200,25);
+		add_but.addActionListener(new ActionListener() {  //Perform action
+			         
+		public void actionPerformed(ActionEvent e){ 
+			       String title = F_title.getText();
+			       String owner = F_owner.getText();
+			        	
+			       System.out.print(title);
+			       System.out.print(" ");
+			       System.out.print(owner);
+			        	
+			       LocalDate date = LocalDate.now();
+			        	//System.out.print(date);
+			        	
+			       LocalDate newDate = date.plusDays(7);
+			        	//System.out.println(newDate);
+			        	
+			        	
+			        	//JFrame f = new JFrame("Current Members");
+			    	SqlServerDbAccessor sqda = new SqlServerDbAccessor();
+			    	sqda.setDbName("SSE657-Library");
+			    	sqda.connectToDb();
+			    	String sql = "UPDATE Books_Instance " +"SET owner ='"+owner+"'"
+			    				+ " WHERE Title='"+title+"'";
+			    	String sql2 = "UPDATE Book_Lookup " +"SET owner ='"+owner+"'"
+			    				+ " WHERE Title='"+title+"'";
+			    	String sql3 = "UPDATE Books_Instance " +"SET CheckoutDate ='"+date+"'"
+			    				+ " WHERE Title='"+title+"'";
+			    	String sql4 = "UPDATE Books_Instance " +"SET ReturnDate ='"+newDate+"'"
+			    				+ " WHERE Title='"+title+"'";
+			    		
+			    	try {
+			    			
+			    			Statement stmt = sqda.getConnection().createStatement();
+			    			stmt.executeUpdate(sql);
+			    			stmt.executeUpdate(sql2);
+			    			stmt.executeUpdate(sql3);
+			    			stmt.executeUpdate(sql4);
+			    			window.dispatchEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSING));
+			    		}
+			    	catch (SQLException e1) {
+			                // TODO Auto-generated catch block
+			                 JOptionPane.showMessageDialog(null, e1);
+			    	}
+			        	
+			        	//System.out.println("title "+title+" genre "+genre);
+			        }
+			    });
+			    
+		LibraryMain lm = new LibraryMain();
+			    
+		lm.setIconOnTitleBar(new ImageIcon("images/libraryIcon.png").getImage());
+			    //Library Icons - Free Download, PNG and SVG. (n.d.). Retrieved September 23, 2020, from https://icons8.com/icons/set/library
+		window.setIconImage(lm.getIconOnTitleBar()); 
+				
+			    //window.add(F_author); //add password
+		window.add(add_but);//adding button in JFrame  
+		window.add(F_title);  //add user
+			   // window.add(F_genre);
+			    //window.add(F_bookID);
+		window.add(F_owner);
+		window.add(l1);  
+		window.add(l2); 
+			    //window.add(l3);
+			    //window.add(l4);
+			    //window.add(l5);
+			     
+		window.setSize(400,300);  
+		window.setLayout(null); 
+		window.setVisible(true);//making the frame visible 
+		window.setLocationRelativeTo(null);    
+				
 	}
 	
 	public void addBook() {
@@ -334,6 +420,92 @@ public class Controller {
 	
 	public void returnBook() {
 		//only admin
+		//only admin
+		//restore owner back to null and get rid of dates
+		//undo what is done in issue book
+		//only admin
+		//change the owner the book in book_lookup and book_instance
+		//take note of issue date and return date
+		JFrame window=new JFrame("Issue Book");  
+		JLabel l1,l2;  
+		l1=new JLabel("Title");  
+		l1.setBounds(30,15, 100,30); //x axis, y axis, width, height    
+					     
+		JTextField F_title = new JTextField(); 
+		F_title.setBounds(110, 15, 200, 30);
+						
+		JButton add_but=new JButton("Return Book");
+		add_but.setBounds(110,155,200,25);
+		add_but.addActionListener(new ActionListener() {  //Perform action
+					         
+			public void actionPerformed(ActionEvent e){ 
+					   String title = F_title.getText();
+					   String owner = " ";
+					        	
+					   System.out.print(title);
+					   System.out.print("meow");
+					   System.out.print(owner);
+					        	
+					    String date = " ";
+					    //System.out.print(date);
+					        	
+					    String newDate = " ";
+					    //System.out.println(newDate);
+					        	
+					        	
+					    //JFrame f = new JFrame("Current Members");
+					    SqlServerDbAccessor sqda = new SqlServerDbAccessor();
+					    sqda.setDbName("SSE657-Library");
+					    sqda.connectToDb();
+					    String sql = "UPDATE Books_Instance " +"SET owner ='"+owner+"'"
+					    				+ " WHERE Title='"+title+"'";
+					    String sql2 = "UPDATE Book_Lookup " +"SET owner ='"+owner+"'"
+					    				+ " WHERE Title='"+title+"'";
+					    String sql3 = "UPDATE Books_Instance " +"SET CheckoutDate ='"+date+"'"
+					    				+ " WHERE Title='"+title+"'";
+					    String sql4 = "UPDATE Books_Instance " +"SET ReturnDate ='"+newDate+"'"
+					    				+ " WHERE Title='"+title+"'";
+					    		
+					    try {
+					    			
+					    			Statement stmt = sqda.getConnection().createStatement();
+					    			stmt.executeUpdate(sql);
+					    			stmt.executeUpdate(sql2);
+					    			stmt.executeUpdate(sql3);
+					    			stmt.executeUpdate(sql4);
+					    			window.dispatchEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSING));
+					    	}
+					    catch (SQLException e1) {
+					                // TODO Auto-generated catch block
+					                 JOptionPane.showMessageDialog(null, e1);
+					    	}
+					        	
+					        	//System.out.println("title "+title+" genre "+genre);
+					        }
+					    });
+					    
+				LibraryMain lm = new LibraryMain();
+					    
+				lm.setIconOnTitleBar(new ImageIcon("images/libraryIcon.png").getImage());
+					    //Library Icons - Free Download, PNG and SVG. (n.d.). Retrieved September 23, 2020, from https://icons8.com/icons/set/library
+				window.setIconImage(lm.getIconOnTitleBar()); 
+						
+					    //window.add(F_author); //add password
+				window.add(add_but);//adding button in JFrame  
+				window.add(F_title);  //add user
+					   // window.add(F_genre);
+					    //window.add(F_bookID);
+					   // window.add(F_owner);
+				window.add(l1);  
+					    //window.add(l2); 
+					    //window.add(l3);
+					    //window.add(l4);
+					    //window.add(l5);
+					     
+				window.setSize(400,300);  
+				window.setLayout(null); 
+				window.setVisible(true);//making the frame visible 
+				window.setLocationRelativeTo(null);    
 	}
 	
 	public void deleteBook() {
@@ -395,7 +567,7 @@ public class Controller {
 	public void deleteUser() {
 		JFrame window=new JFrame("Delete User");  
 	    JLabel l1;  
-	    l1=new JLabel("Member");  
+	    l1=new JLabel("Username");  
 	    l1.setBounds(30,15, 100,30); //x axis, y axis, width, height    
 	     
 	    JTextField F_title = new JTextField(); 
@@ -447,7 +619,4 @@ public class Controller {
 	    window.setVisible(true);//making the frame visible 
 	    window.setLocationRelativeTo(null);
 	}
-	/*public void createData() {
-		//only admin
-	}*/
 }

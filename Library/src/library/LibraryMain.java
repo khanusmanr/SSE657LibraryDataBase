@@ -37,7 +37,7 @@ public class LibraryMain extends JPanel {
 	
 	public static void myBooks() {
 		Controller c = new Controller();
-		c.myBooks("meatball");
+		c.myBooks("mikae");
 	}
 	
 	public static void addBook() {

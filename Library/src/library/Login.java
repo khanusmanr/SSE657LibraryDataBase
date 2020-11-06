@@ -1,5 +1,8 @@
 package library;
 import javax.swing.*;
+
+import csdbdao.SqlServerDbAccessor;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
@@ -25,6 +28,90 @@ public class Login {
 	       
 	    JButton login_but=new JButton("Login");
 	    login_but.setBounds(130,90,80,25);
+	    login_but.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				String username = F_user.getText(); 
+				@SuppressWarnings("deprecation")
+				String password = F_pass.getText();
+				
+				if(username.equals(""))
+				{ 
+					JOptionPane.showMessageDialog(null, "Please enter username");
+				}
+				else if (password.equals(""))
+				{ 
+					JOptionPane.showMessageDialog(null, "Please enter password");
+				}
+				else { 
+					SqlServerDbAccessor sqda = new SqlServerDbAccessor();
+					
+		    		sqda.setDbName("SSE657-Library");
+		    		sqda.connectToDb();
+		    		String sql = ("SELECT * FROM Members WHERE Username = '"+username+"'AND Password='"+password+"'");
+		    		//System.out.println(sql);
+		    		
+		    		try { 
+		    			Statement stmt = sqda.getConnection().createStatement();
+		    			ResultSet rs = stmt.executeQuery(sql);
+		    			//System.out.println("pass"); 
+		    			stmt.executeUpdate(sql);
+		    			if(rs.next()==false) { 
+		    				//System.out.print("No User");
+		    				JOptionPane.showMessageDialog(null, "Wrong Username/Password");
+		    			}
+		    			else { 
+		    				
+		    				//System.out.println("pass2"); 
+		    					//System.out.println("pass3");
+		    					String member = rs.getString("Status");
+		    					//System.out.println(member); 
+		    					//String MID = rs.getString("MemberId");
+		    					//System.out.println(MID); 
+		    					
+		    					if(member.equals("Admin"))
+		    					{ 
+		    						Admin Admin = new Admin();
+		    						Admin.menu(username); 
+		    						window.dispatchEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSING));
+		    					}
+		    					else { 
+		    						User User = new User();
+		    						User.menu(username); 
+		    						window.dispatchEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSING));
+		    					}
+		    			}
+		    		}
+		    		catch(Exception ex){ 
+		    			ex.printStackTrace();
+		    		}
+				}
+			} 
+	    	
+	    });
+	    
+    LibraryMain lm = new LibraryMain();
+    
+    lm.setIconOnTitleBar(new ImageIcon("images/libraryIcon.png").getImage());
+    //Library Icons - Free Download, PNG and SVG. (n.d.). Retrieved September 23, 2020, from https://icons8.com/icons/set/library
+	window.setIconImage(lm.getIconOnTitleBar()); 
+	
+    window.add(F_pass); //add password
+    window.add(login_but);//adding button in JFrame  
+    window.add(F_user);  //add user
+    window.add(l1);  // add label1 i.e. for username
+    window.add(l2); // add label2 i.e. for password
+     
+    window.setSize(400,180);//400 width and 500 height  
+    window.setLayout(null); 
+    window.setVisible(true);//making the frame visible 
+    window.setLocationRelativeTo(null);
+	}
+}
+	    
+	    /*
 	    login_but.addActionListener(new ActionListener() {  //Perform action
 	         
 	        public void actionPerformed(ActionEvent e){ 
@@ -62,24 +149,4 @@ public class Login {
 	        	}
 	        }
 	    }               
-	    });
-	    
-	    LibraryMain lm = new LibraryMain();
-	    
-	    lm.setIconOnTitleBar(new ImageIcon("images/libraryIcon.png").getImage());
-	    //Library Icons - Free Download, PNG and SVG. (n.d.). Retrieved September 23, 2020, from https://icons8.com/icons/set/library
-		window.setIconImage(lm.getIconOnTitleBar()); 
-		
-	    window.add(F_pass); //add password
-	    window.add(login_but);//adding button in JFrame  
-	    window.add(F_user);  //add user
-	    window.add(l1);  // add label1 i.e. for username
-	    window.add(l2); // add label2 i.e. for password
-	     
-	    window.setSize(400,180);//400 width and 500 height  
-	    window.setLayout(null); 
-	    window.setVisible(true);//making the frame visible 
-	    window.setLocationRelativeTo(null);
-	}
-
-}
+	    });*/
