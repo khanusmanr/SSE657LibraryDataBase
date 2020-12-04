@@ -51,34 +51,34 @@ public class Login {
 		    		sqda.setDbName("SSE657-Library");
 		    		sqda.connectToDb();
 		    		String sql = ("SELECT * FROM Members WHERE Username = '"+username+"'AND Password='"+password+"'");
-		    		//System.out.println(sql);
+		    		System.out.println(sql);
 		    		
 		    		try { 
 		    			Statement stmt = sqda.getConnection().createStatement();
 		    			ResultSet rs = stmt.executeQuery(sql);
-		    			//System.out.println("pass"); 
-		    			stmt.executeUpdate(sql);
+		    			System.out.println("pass"); 
+		    			//stmt.executeUpdate(sql);
 		    			if(rs.next()==false) { 
-		    				//System.out.print("No User");
+		    				System.out.print("No User");
 		    				JOptionPane.showMessageDialog(null, "Wrong Username/Password");
 		    			}
 		    			else { 
 		    				
-		    				//System.out.println("pass2"); 
-		    					//System.out.println("pass3");
+		    				System.out.println("pass2"); 
+		    					System.out.println("pass3");
 		    					String member = rs.getString("Status");
-		    					//System.out.println(member); 
+		    					System.out.println(member); 
 		    					//String MID = rs.getString("MemberId");
 		    					//System.out.println(MID); 
 		    					
 		    					if(member.equals("Admin"))
 		    					{ 
-		    						Admin Admin = new Admin();
+		    		
 		    						Admin.menu(username); 
 		    						window.dispatchEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSING));
 		    					}
 		    					else { 
-		    						User User = new User();
+		    						//User user = new User();
 		    						User.menu(username); 
 		    						window.dispatchEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSING));
 		    					}
